@@ -18,6 +18,5 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
 
 sudo apt update && sudo apt install -y 1password-cli
 
-op account add --address my.1password.com --email $OP_ACCOUNT_EMAIL
-eval $(op signin --account my)
+op user get --me
 {{ end -}}
