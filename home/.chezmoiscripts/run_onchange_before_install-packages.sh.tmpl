@@ -19,7 +19,7 @@
 {{ $classicSnaps := list -}}
 
 {{ if eq .osid "linux-ubuntu" -}}
-{{   $snaps = mustAppend $packages "btop" -}}
+{{   $snaps = mustAppend $snaps "btop" -}}
 {{ end -}}
 
 {{ if not .headless -}}
