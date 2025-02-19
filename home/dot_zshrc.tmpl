@@ -97,10 +97,10 @@ export PSQLRC=$XDG_CONFIG_HOME/psql/psqlrc
 {{ end -}}
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config
 
-{{- if .personal }}
+{{/*- if .personal }}
 
-## export CHEZMOI_GITHUB_ACCESS_TOKEN={{ onepasswordRead "op://chezmoi/chezmoi GitHub API Token/credential" | trim }}
-{{- end }}
+export CHEZMOI_GITHUB_ACCESS_TOKEN={{ onepasswordRead "op://chezmoi/chezmoi GitHub API Token/credential" | trim }}
+{{- end */}}
 
 # {{- if .work }}
 
