@@ -1,0 +1,12 @@
+{{ if and (eq .osid "linux-pop" "linux-ubuntu") (not .ephemeral) -}}
+
+#!/bin/sh
+
+echo "Setup Kitty ..."
+
+# https://sw.kovidgoyal.net/kitty/quickstart/
+
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+
+{{ end -}}
