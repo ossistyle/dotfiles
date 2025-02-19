@@ -1,0 +1,8 @@
+HashKnownHosts no
+
+Host github.com
+  User git
+
+{{- if .work }}
+{{ onepasswordRead "op://Development/SSH Config Work/notesPlain" }}
+{{- end }}
