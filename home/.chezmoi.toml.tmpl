@@ -33,9 +33,6 @@
 {{-   $ephemeral = true -}}
 {{- end -}}
 
-{{-     $work = promptBoolOnce . "work" "work" -}}
-{{-     $personal = promptBoolOnce . "personal" "personal" -}}
-
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "legion" -}}
 {{-     $work = true -}}
