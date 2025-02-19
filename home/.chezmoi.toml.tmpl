@@ -33,6 +33,9 @@
 {{-   $ephemeral = true -}}
 {{- end -}}
 
+{{-     $work = promptBoolOnce . "work" "work" -}}
+{{-     $personal = promptBoolOnce . "personal" "personal" -}}
+
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "legion" -}}
 {{-     $work = true -}}
@@ -56,7 +59,7 @@
 
 {{- $email := "ossistyle@gmail.com" -}}
 {{- if $work -}}
-{{-   $email = "tom.payne@flarm.com" -}}
+{{-   $email = "thomas.hoffmann2@ibm.com" -}}
 {{- end -}}
 
 [data]
@@ -77,4 +80,8 @@
     refreshPeriod = "12h"
 
 [onepassword]
+{{- if (env "OP_SERVICE_ACCOUNT_TOKEN") -}}
     mode = "service"
+{{else}}
+    mode = "account"
+{{- end -}}
