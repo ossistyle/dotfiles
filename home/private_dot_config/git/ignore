@@ -1,0 +1,46 @@
+# OS files
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor Files
+
+_.swp
+_.swo
+_.swn
+_.swm
+_.swl
+_.swk
+_.bak
+_.backup
+_.orig
+_.ref
+\*~
+
+# Logs
+
+\*.log
+log.txt
+
+# Generated files
+
+build/
+dist/
+
+# Dependencies
+
+node_modules/
+vendor/
+
+# Sensitive files
+
+_.env
+_.key
+_.pem
+_.credentials
+_.password
+_.secret
