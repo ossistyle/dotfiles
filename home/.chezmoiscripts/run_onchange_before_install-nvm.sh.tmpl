@@ -2,11 +2,14 @@
 
 #!/bin/sh
 
-echo "Installing Node Version Manager (nvm) ..."
+echo "Setup Node Version Manager (nvm) ..."
 
 # https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
 
 {{ if stat (joinPath .chezmoi.homeDir ".nvm") }}
+
+echo "Updating Node Version Manager (nvm) ..."
+
 (
   cd "$NVM_DIR"
   git fetch --tags origin
