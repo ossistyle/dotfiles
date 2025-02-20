@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ]; then
+    set -x
+fi
+
+source ${CHEZMOI_SOURCE_DIR}/../install/ubuntu/utils.sh
+
+header "Installing Github Cli ..."
+
+# https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
+
+install_package gh
+
+success

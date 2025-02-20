@@ -1,0 +1,3 @@
+{{ if and (eq .osid "linux-ubuntu") .personal -}}
+	{{ include "../install/ubuntu/op.sh" }}
+{{ end -}}
