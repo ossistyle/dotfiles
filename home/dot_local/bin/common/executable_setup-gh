@@ -8,7 +8,7 @@ function login_to_github() {
 
 function add_ssh_key_to_github() {
     gh auth refresh -h github.com -s admin:public_key
-    gh ssh-key add "${HOME%/}/.ssh/id_ed25519.pub"
+    gh ssh-key add "${HOME%/}/.ssh/id_rsa.pub"
 }
 
 function main() {
