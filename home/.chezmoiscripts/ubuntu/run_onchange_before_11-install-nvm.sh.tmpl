@@ -1,3 +1,12 @@
 {{ if and (eq .osid "linux-ubuntu") (not .ephemeral) -}}
-	{{ include "../install/ubuntu/nvm.sh" }}
+#!/usr/bin/env bash
+
+set -e pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ]; then
+    set -x
+fi
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
 {{ end -}}

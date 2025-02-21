@@ -4,13 +4,13 @@
      "bat"
      "build-essential"
      "curl"
+     "unzip"
      "fd-find"
      "fzf"
      "git"
      "git-lfs"
      "jq"
      "libfuse2"
-     "openssh-server"
      "ripgrep"
      "shellcheck"
      "units"
@@ -27,14 +27,18 @@
 {{   $classicSnaps = mustAppend $classicSnaps "code" -}}
 {{ end -}}
 
+{{/*
 {{ if .personal -}}
 {{   $packages = mustAppend $packages "musl-tools" -}}
 {{   $classicSnaps = concat $classicSnaps (list "goreleaser" "snapcraft") -}}
 {{ end -}}
+*/}}
 
+{{/*
 {{ if eq .osid "linux-ubuntu" -}}
 {{   $packages = concat $packages (list "gdal-bin" "libgeos-dev" "libproj-dev" "postgis" "postgresql") -}}
 {{ end -}}
+*/}}
 
 {{ if and (eq .osid "linux-ubuntu") (not .headless) -}}
 {{   $packages = concat $packages (list "qgis") -}}
@@ -45,7 +49,16 @@
 {{   $sudo = "" -}}
 {{ end -}}
 
-{{ include "../install/ubuntu/package.sh" }}
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ]; then
+    set -x
+fi
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $packages | join " " }}
 
 {{ if lookPath "snap" }}
 {{   range $snaps }}

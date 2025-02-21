@@ -1,3 +1,14 @@
 {{ if and (eq .osid "linux-ubuntu") (not .ephemeral) -}}
-	{{ include "../install/ubuntu/kitty.sh" }}
+#!/usr/bin/env bash
+
+set -e pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ]; then
+    set -x
+fi
+
+# https://sw.kovidgoyal.net/kitty/quickstart/
+
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
 {{ end -}}
