@@ -7,18 +7,10 @@
 
 {{- if eq .osid "linux-ubuntu" }}
 
-[".local/bin/lazydocker"]
-    type = "archive"
-    url = "https://github.com/jesseduffield/lazydocker/archive/master.tar.gz"
+["~/"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh"
     exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-    exclude = [
-        "*/.editorconfig",
-        "*/.gitattributes",
-        "*/.github",
-        "*/.gitignore",
-    ]
 
 [".local/bin/age"]
     type = "archive-file"
