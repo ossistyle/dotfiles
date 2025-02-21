@@ -9,11 +9,7 @@
 .oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
 
 {{ if ne .chezmoi.os "darwin" }}
-.chezmoiscripts/darwin/**
-.config/ghostty
-.config/homebrew
-.config/karabiner
-.hammerspoon
+
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
@@ -29,11 +25,10 @@ Documents
 {{ else }}
 .bash_aliases
 .config/git/cookies
-.config/psql
-.config/readline
+.config/kitty
+.config/btop
+.config/lazydocker
 .config/tmux
-.gnupg
-.gnupg/**
 .inputrc
 .oh-my-zsh
 .oh-my-zsh/**
@@ -46,6 +41,4 @@ Documents
 {{ end }}
 
 {{ if not .personal }}
-.pypirc
-.psqlrc
 {{ end }}
