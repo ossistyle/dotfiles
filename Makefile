@@ -27,6 +27,7 @@ watch:
 .PHONY: reset
 reset:
 	chezmoi state delete-bucket --bucket=scriptState
+	chezmoi state delete-bucket --bucket=entryState
 
 .PHONY: reset-config
 reset-config:
