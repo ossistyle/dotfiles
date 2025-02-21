@@ -1,5 +1,13 @@
 #!/bin/bash
-set -e
+
+set -eufo pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ]; then
+    set -x
+fi
+
+source install/linux/client/docker.sh
+main
 
 # Mounts dotfiles into a Docker container, installs them, and drops you into a prompt.
 
