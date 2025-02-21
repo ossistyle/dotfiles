@@ -59,6 +59,13 @@ function install_docker_engine() {
     sudo usermod -aG docker "$(whoami)"
 }
 
+install_lazydocker() {
+
+  curl -fsSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh -o "$HOME/install_update_linux.sh" 
+
+  bash "$HOME/install_update_linux.sh"
+}
+
 function uninstall_docker_engine() {
     sudo apt-get remove -y "${PACKAGES[@]}"
 }
@@ -67,6 +74,7 @@ function main() {
     uninstall_old_docker
     setup_repository
     install_docker_engine
+    install_lazydocker
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
