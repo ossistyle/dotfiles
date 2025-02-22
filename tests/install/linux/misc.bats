@@ -9,13 +9,13 @@ function setup() {
 function teardown() {
     run uninstall_apt_packages
 
-    PATH=$(getconf PATH)
-    export PATH
+    # PATH=$(getconf PATH)
+    # export PATH
 }
 
 @test "[ubuntu-common] PACKAGES for misc" {
     num_packages="${#PACKAGES[@]}"
-    [ $num_packages -eq 10 ]
+    [ $num_packages -eq 11 ]
 
     expected_packages=(
         curl
