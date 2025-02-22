@@ -20,7 +20,9 @@ readonly EXTENSIONS=(
 )
 
 install_vscode_extensions() {
-    code --force --install-extension "${EXTENSIONS[@]}"
+    for extension in "${EXTENSIONS[@]}"; do
+        code --force --install-extension "${extension}"
+    done
 }
 
 function main() {
