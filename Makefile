@@ -14,7 +14,7 @@ CUR_DIR = $(shell echo "${PWD}")
 #################################
 .PHONY: init
 init:
-	chezmoi init --apply --verbose
+	chezmoi init --apply --verbose --source=${CUR_DIR}
 
 .PHONY: update
 update:
@@ -32,6 +32,10 @@ reset:
 .PHONY: reset-config
 reset-config:
 	chezmoi init --data=false
+
+.PHONY: doctor
+doctor:
+	chezmoi doctor
 
 
 #################################

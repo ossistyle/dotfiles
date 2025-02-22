@@ -6,16 +6,15 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
-readonly LOCALE=en_US.UTF-8
+readonly LOCALE="en_US.UTF-8"
 
-readonly PACKAGES=(
-    busybox
+readonly PACKAGES=(    
     curl
     gpg
     fd-find
     jq
     shellcheck
-    libfuse2
+    locales
     unzip
     vim
     wget
@@ -30,12 +29,16 @@ readonly CLASSIC_SNAPS=(
     code
 )
 
-function install_apt_packages() {
+function update_apt_package() {
+    sudo apt-get update
+}
+
+function install_apt_packages() {    
     sudo apt-get install -y "${PACKAGES[@]}"    
 }
 
 function set_local() {
-    locale-gen $LOCALE
+    sudo locale-gen $LOCALE
 }
 
 function uninstall_apt_packages() {
@@ -43,43 +46,48 @@ function uninstall_apt_packages() {
 }
 
 function install_apt_snaps() {
-    for snap in "${SNAPS[@]}"; do
-        if dpkg -s "${snap}" >/dev/null 2>&1; then
-            ( snap info "${snap}" | grep -q ^installed: ) || snap install "${snap}"
-        fi
+    echo "Install snaps"
+    for snap in "${SNAPS[@]}"; do   
+        echo "Installing $snap ..."       
+        ( snap info $snap | grep -q ^installed: ) || sudo snap install $snap        
     done
 }
 
 function uninstall_apt_snaps() {
-    for snap in "${SNAPS[@]}"; do
-        if dpkg -s "${snap}" >/dev/null 2>&1; then
-            ( snap info "${snap}" | grep -q ^installed: ) || snap remove "${snap}"
-        fi
+    echo "Uninstall snaps"
+    for snap in "${SNAPS[@]}"; do   
+        echo "Uninstalling $snap ..."       
+        ( snap info $snap | grep -q ^installed: ) || sudo snap remove $snap       
     done
 }
 
 function install_apt_classic_snaps() {
-    for snap in "${CLASSIC_SNAPS[@]}"; do
-        if dpkg -s "${snap}" >/dev/null 2>&1; then
-            ( snap info "${snap}" | grep -q ^installed: ) || snap install --classic "${snap}"
-        fi
+    echo "Install classic snaps"
+    for classic_snap in "${CLASSIC_SNAPS[@]}"; do  
+        echo "Installing $classic_snap ..."      
+        ( snap info $classic_snap | grep -q ^installed: ) || sudo snap install --classic $classic_snap  
     done
 }
 
 function uninstall_apt_classic_snaps() {
-    for snap in "${SNAPS[@]}"; do
-        if dpkg -s "${snap}" >/dev/null 2>&1; then
-            ( snap info "${snap}" | grep -q ^installed: ) || snap remove "${snap}"
-        fi
+    echo "Uninstall classic snaps"
+    for classic_snap in "${CLASSIC_SNAPS[@]}"; do
+        ( snap info $classic_snap | grep -q ^installed: ) || sudo snap remove $classic_snap     
     done
+}
+
+function uninstall_apt_all_snaps() {
+    uninstall_apt_snaps
+    uninstall_apt_classic_snaps
 }
 
 
 function main() {
+    update_apt_package
     install_apt_packages
     install_apt_snaps
     install_apt_classic_snaps
-    set_local
+    # set_local
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

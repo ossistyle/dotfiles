@@ -17,20 +17,24 @@ function install_dependencies() {
 }
 
 function check_nvm_installation() {
-    if [ ! -s "$NVM_DIR/nvm.sh" ]; then
-        echo "To install node modules, you must run 'bash install/linux/nvm.sh' before." >&2
+    if ! [ -x "$(command -v nvm)" ]; then
+        #(exec ./install/linux/nvm.sh)
+        echo "To install node modules, you must run './install/linux/nvm.sh' first." >&2
         exit 1
     fi
-    . "$NVM_DIR/nvm.sh"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
 function _install_node() {
+    nvm install node
     nvm install --lts
 }
 
 function check_node_installation() {
-    if ! command -v node &> /dev/null; then
-        _install_node
+    if ! [ -x "$(command -v node)" ]; then
+        nvm install node
     fi
 }
 
@@ -43,7 +47,7 @@ function uninstall_global_node_modules() {
 }
     
 function main() {
-    install_dependencies
+    # install_dependencies
     check_nvm_installation
     check_node_installation
     uninstall_global_node_modules

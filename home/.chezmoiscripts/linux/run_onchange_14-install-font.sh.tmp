@@ -1,5 +1,0 @@
-{{ if and (eq .osid "linux-ubuntu") (not .ephemeral) -}}
-    
-    {{ include "../install/linux/fonnt.sh" }}
-
-{{ end -}}   
