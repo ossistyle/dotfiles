@@ -1,0 +1,9 @@
+{{ if and (eq .osid "linux-ubuntu") -}}
+
+    {{ include "../install/linux/misc.sh" }}
+
+{{ else -}}
+
+    echo "Invalid linux distribution: {{ .chezmoi.osRelease.id }}"
+    
+{{ end -}}

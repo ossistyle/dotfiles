@@ -11,12 +11,12 @@ readonly GLOBAL_MODULES=(
     gitmoji-cli    
 )
 
-install_dependencies() {
+function install_dependencies() {
     sudo apt-get update 
     sudo apt-get install -y build-essential
 }
 
-check_nvm_installation() {
+function check_nvm_installation() {
     if [ ! -s "$NVM_DIR/nvm.sh" ]; then
         echo "To install node modules, you must run 'bash install/linux/nvm.sh' before." >&2
         exit 1
@@ -24,21 +24,21 @@ check_nvm_installation() {
     . "$NVM_DIR/nvm.sh"
 }
 
-_install_node() {
+function _install_node() {
     nvm install --lts
 }
 
-check_node_installation() {
+function check_node_installation() {
     if ! command -v node &> /dev/null; then
         _install_node
     fi
 }
 
-install_global_node_modules() {
+function install_global_node_modules() {
     npm install -g "${GLOBAL_MODULES[@]}"
 }
 
-uninstall_global_node_modules() {
+function uninstall_global_node_modules() {
     npm remove -g "${GLOBAL_MODULES[@]}"
 }
     
