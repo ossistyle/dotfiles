@@ -15,7 +15,7 @@ function get_latest_version() {
 function install_golang() {
 
     if [ -d "/usr/local/go" ]; then
-        sudo rm -rfv "/usr/local/go"
+        sudo rm -rf "/usr/local/go"
     fi
 
     local tmp_file

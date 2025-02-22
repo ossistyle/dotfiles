@@ -8,7 +8,7 @@ fi
 
 readonly GLOBAL_MODULES=(
     opencommit
-    gitmoji-cli    
+    gitmoji-cli
 )
 
 function install_dependencies() {
@@ -16,15 +16,13 @@ function install_dependencies() {
     sudo apt-get install -y build-essential
 }
 
-function check_nvm_installation() {
-    if ! [ -x "$(command -v nvm)" ]; then
+function check_nvm_installation() {    
+    if ! nvm="$(command -v nvm)" || [[ -z $nvm ]] && ! [ -d "$HOME/.nvm" ]; then
         #(exec ./install/linux/nvm.sh)
         echo "To install node modules, you must run './install/linux/nvm.sh' first." >&2
+        unset NVM_DIR
         exit 1
     fi
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
 function _install_node() {
@@ -33,7 +31,7 @@ function _install_node() {
 }
 
 function check_node_installation() {
-    if ! [ -x "$(command -v node)" ]; then
+    if ! node="$(type -p node)" || [[ -z $node ]]; then
         nvm install node
     fi
 }

@@ -14,7 +14,7 @@ CUR_DIR = $(shell echo "${PWD}")
 #################################
 .PHONY: init
 init:
-	chezmoi init --apply --verbose --source=${CUR_DIR}
+	chezmoi init --apply --source=${CUR_DIR}
 
 .PHONY: update
 update:
