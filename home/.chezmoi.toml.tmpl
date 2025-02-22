@@ -56,7 +56,7 @@
 {{-   $email = "thomas.hoffmann2@ibm.com" -}}
 {{- end -}}
 
-{{- testContainer := env "DOTFILES_TEST_CONTAINER" }}
+{{- $testContainer := env "DOTFILES_TEST_CONTAINER" }}
 
 [data]
     ephemeral = {{ $ephemeral }}
