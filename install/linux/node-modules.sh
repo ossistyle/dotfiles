@@ -17,7 +17,7 @@ function install_dependencies() {
 }
 
 function check_nvm_installation() {    
-    if ! nvm="$(command -v nvm)" || [[ -z $nvm ]] && ! [ -d "$HOME/.nvm" ]; then
+    if [[ -z "${NVM_DIR}" ]]; then
         #(exec ./install/linux/nvm.sh)
         echo "To install node modules, you must run './install/linux/nvm.sh' first." >&2
         unset NVM_DIR
