@@ -25,7 +25,7 @@ declare -r DOTFILES_LOGO='
 '
 
 declare -r DOTFILES_REPO_URL="https://github.com/ossistyle/dotfiles"
-declare -r BRANCH_NAME="${BRANCH_NAME:-master}"
+declare -r BRANCH_NAME="${BRANCH_NAME:-main}"
 declare -r DOTFILES_GITHUB_PAT="${DOTFILES_GITHUB_PAT:-}"
 
 function is_ci() {
@@ -153,10 +153,14 @@ function initialize_os_env() {
 }
 
 function run_chezmoi() {
+    local bin_dir="$HOME/.local/bin"
+    chezmoi="$bin_dir/chezmoi"
+
     # download the chezmoi binary from the URL
-    sh -c "$(curl -fsLS get.chezmoi.io)"
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$bin_dir"
+    
     local chezmoi_cmd
-    chezmoi_cmd="./bin/chezmoi"
+    chezmoi_cmd=chezmoi
 
     if is_ci_or_not_tty; then
         no_tty_option="--no-tty" # /dev/tty is not available (especially in the CI)
