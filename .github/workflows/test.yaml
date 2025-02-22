@@ -2,9 +2,9 @@ name: Unit test
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   test:
@@ -71,7 +71,7 @@ jobs:
       #     verbose: true
 
 
-      
+
         # run: |
         #   bash <(curl -s https://codecov.io/bash) \
         #     -n "codecov-dotfiles"             `# Custom defined name of the upload. Visible in Codecov UI.` \
