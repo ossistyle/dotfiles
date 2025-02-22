@@ -6,6 +6,11 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
+function install_dependencies() {
+    sudo apt-get update 
+    sudo apt-get install -y unzip
+}
+
 function install_ghq() {
     local dir_name="ghq_linux_amd64"
     local zip_name="${dir_name}.zip"
@@ -37,6 +42,7 @@ function uninstall_ghq() {
 }
 
 function main() {
+    install_dependencies
     install_ghq
 }
 

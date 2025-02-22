@@ -8,7 +8,7 @@ fi
 
 readonly LOCALE="en_US.UTF-8"
 
-readonly PACKAGES=(    
+readonly PACKAGES=( 
     curl
     gpg
     fd-find
@@ -87,7 +87,7 @@ function main() {
     install_apt_packages
     install_apt_snaps
     install_apt_classic_snaps
-    # set_local
+    set_local
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
