@@ -38,9 +38,9 @@ jobs:
             exit 1
           fi
 
-      - name: Run unit test
+      - name: Run install test
         run: |
-          ./scripts/run_unit_test.sh
+          ./scripts/run_install_test.sh
 
       # - name: Setup for codecov
       #   run: |
