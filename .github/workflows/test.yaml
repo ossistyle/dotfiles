@@ -31,7 +31,7 @@ jobs:
 
           elif [ "${OS}" == "ubuntu-latest" ]; then
             sudo apt-get install -y bats parallel
-            bash ./install/ubuntu/common/kcov.sh
+            bash ./install/linux/kcov.sh
 
           else
             echo "${OS} and ${SYSTEM} are not supported" >&2
