@@ -50,6 +50,7 @@ jobs:
           #              │               │
           #              │               └─ Simulate inputting an system arcitecture into the config.
           #              └─ Simulate inputting an email address into the config.
+          chezmoi dump-config -f yaml
 
       - name: Install latest bats-core
         run: |
