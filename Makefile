@@ -79,6 +79,7 @@ test-container: image
 	@echo "+ $@"
 	@docker run \
 			-it \
+			--rm \
 			-v "$$(pwd):/home/$$(whoami)/.local/share/chezmoi" \
 			--name ${IMAGE_NAME}-test-container \
 			--env DOTFILES_TEST_CONTAINER=1 \

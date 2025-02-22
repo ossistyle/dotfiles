@@ -74,6 +74,7 @@ function main() {
     uninstall_old_docker
     setup_repository
     install_docker_engine
+    install_lazydocker
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
