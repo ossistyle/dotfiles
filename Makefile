@@ -80,11 +80,13 @@ test-container: image
 	@docker run \
 			-it \
 			--rm \
+			-u $$(whoami) \
 			-v "$$(pwd):/home/$$(whoami)/.local/share/chezmoi" \
 			--name ${IMAGE_NAME}-test-container \
 			--env DOTFILES_TEST_CONTAINER=1 \
+			--env DOTFILES_DEBUG=1 \
 			${IMAGE_NAME}:latest \
-			/bin/bash -c "./setup.sh && make test-all" \
+			# /bin/bash --login -c "./setup.sh && make test-all" \
 
 #################################
 # Utilities
