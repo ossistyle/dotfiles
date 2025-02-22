@@ -160,7 +160,7 @@ function run_chezmoi() {
     sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$bin_dir"
     
     local chezmoi_cmd
-    chezmoi_cmd=chezmoi
+    chezmoi_cmd=$chezmoi
 
     if is_ci_or_not_tty; then
         no_tty_option="--no-tty" # /dev/tty is not available (especially in the CI)
@@ -251,7 +251,7 @@ function main() {
     initialize_os_env
     initialize_dotfiles
 
-    # restart_shell # Disabled because the at_exit function does not work properly.
+    restart_shell # Disabled because the at_exit function does not work properly.
 }
 
 main
