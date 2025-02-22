@@ -7,11 +7,16 @@ function setup() {
 }
 
 function teardown() {
-    run remove_ghq_dir
+    run uninstall_ghq
+
+    # reset PATH
+    PATH=$(getconf PATH)
+    export PATH
 }
 
-@test "[common] ghq" {
+@test "[linux] ghq" {
     DOTFILES_DEBUG=1 bash "${SCRIPT_PATH}"
 
-    [ -d "${HOME%/}/ghq" ]
+    export PATH="${PATH}:${HOME%/}/.local/bin"
+    [ -x "$(command -v ghq)" ]
 }

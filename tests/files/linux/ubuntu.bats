@@ -4,6 +4,9 @@
 @test "[ubuntu-personal] dotfiles" {
     files_exists=(
         "${HOME}/.zshrc"
+        "${HOME}/.zshenv"
+        "${HOME}/.zlogin"
+        "${HOME}/.zlogout"        
         "${HOME}/.zprofile"
         "${HOME}/.p10k.zsh"
         "${HOME}/.opencommit"
@@ -13,7 +16,7 @@
         "${HOME}/.config/git/ignore"
         "${HOME}/.config/kitty/kitty.conf"
         "${HOME}/.config/lazydocker/config.yml"
-        "${HOME}/.config/nvim/init.vim"
+        "${HOME}/.config/nvim/init.lua"
         "${HOME}/.config/tmux/tmux.conf"
     )
     for file in "${files_exists[@]}"; do
@@ -22,8 +25,7 @@
     done
 
     directories_exists=(
-        "${HOME}/.config/nvim/pack/twpayne/start"
-        "${HOME}/.zprezto"
+        
     )
     for directory in "${directories_exists[@]}"; do
         echo "Checking ${directory}"
@@ -43,6 +45,9 @@
 @test "[ubuntu-work] dotfiles" {
     files_exists=(
         "${HOME}/.zshrc"
+        "${HOME}/.zshenv"
+        "${HOME}/.zlogin"
+        "${HOME}/.zlogout"        
         "${HOME}/.zprofile"
         "${HOME}/.p10k.zsh"
         "${HOME}/.opencommit"
@@ -52,12 +57,20 @@
         "${HOME}/.config/git/ignore"
         "${HOME}/.config/kitty/kitty.conf"
         "${HOME}/.config/lazydocker/config.yml"
-        "${HOME}/.config/nvim/init.vim"
+        "${HOME}/.config/nvim/init.lua"
         "${HOME}/.config/tmux/tmux.conf"
     )
     for file in "${files_exists[@]}"; do
         echo "Checking ${file}"
         [ -f "${file}" ]
+    done
+
+    directories_exists=(
+        
+    )
+    for directory in "${directories_exists[@]}"; do
+        echo "Checking ${directory}"
+        [ -d "${directory}" ]
     done
 
     files_not_exists=(
