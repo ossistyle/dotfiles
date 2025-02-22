@@ -84,6 +84,6 @@
 {{else}}
     mode = "account"
 {{- end -}}
-{{- if $testContainer -}}
+{{- if (env "DOTFILES_TEST_CONTAINER") -}}
     prompt = false
 {{- end -}}
