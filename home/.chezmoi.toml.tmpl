@@ -84,6 +84,6 @@
 {{else}}
     mode = "account"
 {{- end -}}
-{{- if (env "DOTFILES_UNIT_TESTS") -}}
+{{- if (env "DOTFILES_TEST_CONTAINER") -}}
     prompt = false
 {{- end -}}
