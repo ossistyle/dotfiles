@@ -1,4 +1,3 @@
-{{- if (not .ephemeral) -}}
 #!/bin/bash
 
 set -eufo pipefail
@@ -7,5 +6,4 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
-chsh -s /usr/bin/zsh
-{{ end -}}
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash

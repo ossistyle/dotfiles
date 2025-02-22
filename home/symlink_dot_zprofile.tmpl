@@ -1,0 +1,34 @@
+
+#
+# Language
+#
+
+if [[ -z "$LANG" ]]; then
+  export LANG='en_US.UTF-8'
+fi
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
+
+{{ if stat "/opt/homebrew/bin/brew" -}}
+fpath+=("{{ output "/opt/homebrew/bin/brew" "--prefix" | trim }}/share/zsh/site-functions")
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end -}}
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+    $path
+    /opt/{homebrew,local}/{,s}bin(N-/)
+    /usr/local/{,s}bin(N-/)
+    ${HOME}/.local/bin(N-/)
+    ${HOME}/.local/bin/common(N-/)
+    ${HOME}/.local/bin/client(N-/)
+)
+
+# Set the list of directories that Zsh searches for functions.
+fpath=(
+    $fpath
+    ${HOME}/.local/bin/common(N-/)
+    ${HOME}/.local/bin/client(N-/)
+)

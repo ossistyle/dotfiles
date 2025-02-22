@@ -1,5 +1,5 @@
 {{ if and (eq .osid "linux-ubuntu") (not .ephemeral) -}}
 
-    {{ include "../install/linux/client/docker.sh" }}
+    {{ include "../install/linux/docker.sh" }}
 
 {{ end -}}

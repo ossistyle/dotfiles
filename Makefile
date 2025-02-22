@@ -10,7 +10,7 @@ IMAGE_NAME = "${APP_NAME}"
 CUR_DIR = $(shell echo "${PWD}")
 
 #################################
-# Chezmoi
+# Chezmoi target
 #################################
 .PHONY: init
 init:
@@ -77,8 +77,9 @@ test-container: image
 			-it \
 			-v "$$(pwd):/home/$$(whoami)/.local/share/chezmoi" \
 			--name ${IMAGE_NAME}-unit-tests \
+			--env DOTFILES_UNIT_TESTS=1
 			${IMAGE_NAME}:latest \
-			/bin/bash -c "make test-all" \
+			/bin/bash -c "sh ./setup.sh && make test-all" \
 
 #################################
 # Utilities

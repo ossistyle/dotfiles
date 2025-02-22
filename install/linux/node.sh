@@ -1,4 +1,3 @@
-{{- if (not .ephemeral) -}}
 #!/bin/bash
 
 set -eufo pipefail
@@ -7,11 +6,10 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
-/bin/zsh --login
+source ${HOME}/.zshrc
 
-eval $(where nvm)
+where nvm
 
 # nvm install --lts
 # npm install -g opencommit
 # npm i -g gitmoji-cli
-{{ end -}}

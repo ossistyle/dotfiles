@@ -69,6 +69,7 @@
         "per-directory-history",
         "vi-mode",
         "zsh-syntax-highlighting",
+        "zsh-autosuggestions"
     ]
 
 [github]
@@ -79,4 +80,7 @@
     mode = "service"
 {{else}}
     mode = "account"
+{{- end -}}
+{{- if (env "DOTFILES_UNIT_TESTS") -}}
+    prompt = false
 {{- end -}}
