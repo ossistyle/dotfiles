@@ -209,26 +209,22 @@ function initialize_dotfiles() {
     run_chezmoi
 }
 
-function get_system_from_chezmoi() {
-    local system
-    system=$(chezmoi data | jq -r '.system')
-    echo "${system}"
+function get_test_container_from_chezmoi() {
+    local testContainer
+    testContainer=$(chezmoi data | jq -r '.testContainer')
+    echo "${testContainer}"
 }
 
 function restart_shell_system() {
-    local system
-    system=$(get_system_from_chezmoi)
+    local testContainer
+    testContainer=$(get_test_container_from_chezmoi)
 
     # exec shell as login shell (to reload the .zprofile or .profile)
-    if [ "${system}" == "client" ]; then
-        /bin/zsh --login
-
-    elif [ "${system}" == "server" ]; then
+    # load only bash on test container
+    if [ "${testContainer}" == "1" ]; then
         /bin/bash --login
-
     else
-        echo "Invalid system: ${system}; expected \`client\` or \`server\`" >&2
-        exit 1
+        /bin/zsh --login
     fi
 }
 

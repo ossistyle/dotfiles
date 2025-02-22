@@ -53,8 +53,8 @@ image: version-check
 	@docker build -t ${IMAGE_NAME}:${VERSION} -f ./${DOCKERFILE} --build-arg USERNAME="$$(whoami)" .
 	@docker tag ${IMAGE_NAME}:${VERSION} ${IMAGE_NAME}:latest
 	@echo 'Done.'
-	@docker images --format '{{.Repository}}:{{.Tag}}\t\t Built: {{.CreatedSince}}\t\tSize: {{.Size}}' | \ 
-		grep ${IMAGE_NAME}:${VERSION}
+#	@docker images --format '{{.Repository}}:{{.Tag}}\t\t Built: {{.CreatedSince}}\t\tSize: {{.Size}}' | \ 
+#		grep ${IMAGE_NAME}:${VERSION}
 
 #################################
 # test targets
@@ -80,10 +80,10 @@ test-container: image
 	@docker run \
 			-it \
 			-v "$$(pwd):/home/$$(whoami)/.local/share/chezmoi" \
-			--name ${IMAGE_NAME}-unit-tests \
-			--env DOTFILES_UNIT_TESTS=1
+			--name ${IMAGE_NAME}-test-container \
+			--env DOTFILES_TEST_CONTAINER=1 \
 			${IMAGE_NAME}:latest \
-			/bin/bash -c "sh ./setup.sh && make test-all" \
+			/bin/bash -c "./setup.sh && make test-all" \
 
 #################################
 # Utilities
@@ -91,8 +91,8 @@ test-container: image
 
 .PHONY: version-check
 version-check:
-#	@echo "+ $@"
-	if [ -z "${VERSION}" ]; then \
+	@echo "+ $@"
+	@if [ -z "${VERSION}" ]; then \
 		echo "VERSION is not set" ; \
 		false ; \
 	else \
