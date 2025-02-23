@@ -10,7 +10,8 @@ readonly _NVM_DIR="$HOME/.nvm"
 
 function install_dependencies() {
     sudo snap remove curl
-    sudo apt-get update    
+    sudo apt-get update   
+    sudo apt-get upgrade 
     sudo apt-get install -y curl unzip tar xz-utils build-essential libssl-dev curl git-core
 }
 
