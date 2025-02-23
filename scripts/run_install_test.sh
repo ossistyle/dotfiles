@@ -20,15 +20,10 @@ function merge_coverage_results() {
         "./coverage_linux" \    
 }
 
-function uninstall_dependencies() {
-    command -v bats && sudo apt-get remove -y bats parallel
-}
-
 function main() {
     install_dependencies
     run_os_specific_test
     merge_coverage_results
-    uninstall_dependencies
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
