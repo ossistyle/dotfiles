@@ -30,8 +30,7 @@ function install_font() {
     for font in "${NERD_FONTS[@]}"; do
         local encoded_font=$(printf %s "${font}"|jq -sRr @uri)
         local font_url="https://github.com/romkatv/powerlevel10k-media/raw/master/${encoded_font}"
-        echo "${font}"
-        install_nerd_font "${font_url}" ${font}
+        install_nerd_font "${font_url}" "${font}"
     done
 }
 
