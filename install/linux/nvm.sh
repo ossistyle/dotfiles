@@ -15,6 +15,7 @@ function install_dependencies() {
 }
 
 function install_nvm() {
+    rm -rf "$_NVM_DIR"
     if [ ! -d "$_NVM_DIR" ]; then
         mkdir "$_NVM_DIR"
         export NVM_DIR=$_NVM_DIR

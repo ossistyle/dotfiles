@@ -7,7 +7,7 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
 fi
 
 function install_dependencies() {
-    sudo apt-get install -y curl
+    sudo apt-get install -y curl xz-utils 
 }
 
 function install_kitty() {
@@ -27,7 +27,7 @@ function uninstall_kitty() {
     rm -rf "${HOME}/.local/kitty.app"
     rm -rf "${HOME}/.local/bin/kitty"
     rm -rf "${HOME}/.local/bin/kitten"
-    sudo apt-get remove -y curl
+    sudo apt-get remove -y curl xz-utils 
     sudo apt-get auto-remove -y
 }
 

@@ -13,6 +13,7 @@ function teardown() {
 @test "[ubuntu-common] font" {
     DOTFILES_DEBUG=1 bash "${SCRIPT_PATH}"
     for font in "${NERD_FONTS[@]}"; do
+        echo "${FONT_DIR}/${font}"
         [ -f "${FONT_DIR}/${font}" ]
     done
 }
