@@ -64,13 +64,13 @@ test-install:
 	@echo "+ $@"
 	./scripts/run_install_test.sh
 
-.PHONY: test-file
-test-file:
+.PHONY: test-setup
+test-setup:
 	@echo "+ $@"
-	./scripts/run_file_test.sh
+	./scripts/run_setup_test.sh
 
 .PHONY: test-all
-test-all: test-file
+test-all: test-install
 	@echo "+ $@"
 	
 
