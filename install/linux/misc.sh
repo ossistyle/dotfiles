@@ -18,7 +18,6 @@ readonly PACKAGES=(
     unzip
     vim
     wget
-    libfuse2
     zsh
 )
 

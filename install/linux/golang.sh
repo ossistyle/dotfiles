@@ -6,6 +6,10 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
+function install_dependencies() {
+    sudo apt-get install -y curl
+}
+
 function get_latest_version() {
     local version
     version="$(curl https://go.dev/VERSION?m=text | head -n 1)"
@@ -29,9 +33,11 @@ function install_golang() {
 
 function uninstall_golang() {
     sudo rm -rfv /usr/local/go
+    sudo apt-get remove -y curl
 }
 
 function main() {
+    install_dependencies
     install_golang
 }
 

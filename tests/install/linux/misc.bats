@@ -2,6 +2,19 @@
 
 readonly SCRIPT_PATH="./install/linux/misc.sh"
 
+readonly expected_packages=(
+    curl
+    gpg
+    fd-find
+    jq
+    shellcheck
+    locales
+    unzip
+    vim
+    wget
+    zsh
+)
+
 function setup() {
     source "${SCRIPT_PATH}"
 }
@@ -15,21 +28,9 @@ function teardown() {
 
 @test "[ubuntu-common] PACKAGES for misc" {
     num_packages="${#PACKAGES[@]}"
-    [ $num_packages -eq 11 ]
+    [ $num_packages -eq 10 ]
 
-    expected_packages=(
-        curl
-        gpg
-        fd-find
-        jq
-        shellcheck
-        locales
-        unzip
-        vim
-        wget
-        libfuse2
-        zsh
-    )
+    
     for ((i = 0; i < ${#expected_packages[*]}; ++i)); do
         [ "${PACKAGES[$i]}" == "${expected_packages[$i]}" ]
     done
@@ -39,21 +40,14 @@ function teardown() {
     DOTFILES_DEBUG=1 bash "${SCRIPT_PATH}"
 
     for ((i = 0; i < ${#expected_packages[*]}; ++i)); do        
-        local package = "${expected_packages[$i]}"
-        [ "${expected_packages[$i]}" == "locales"] && package = "locale-gen"
-        echo "Check package $package ..."
-        [ -x "$(command -v $package)" ]
+        package="${expected_packages[$i]}"
+        if [ "${expected_packages[$i]}" == "locales" ]; then 
+            package="locale-gen"
+        fi
+        if [ "${expected_packages[$i]}" == "fd-find" ]; then 
+            package="fdfind"
+        fi
+        echo "Check package "${package}" ..."
+        [ -x "$(command -v "${package}")" ]
     done
-
-    #[ -x "$(command -v curl)" ]
-    #[ -x "$(command -v gpg)" ]    
-    #[ -x "$(command -v fdfind)" ]
-    #[ -x "$(command -v jq)" ]    
-    #[ -x "$(command -v btop)" ]
-    #[ -x "$(command -v shellcheck)" ]
-    #[ -x "$(command -v locale-gen)" ]
-    #[ -x "$(command -v unzip)" ]    
-    #[ -x "$(command -v vim)" ]    
-    #[ -x "$(command -v wget)" ]
-    #[ -x "$(command -v zsh)" ]
-}#
+}

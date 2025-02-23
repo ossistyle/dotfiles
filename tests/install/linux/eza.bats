@@ -8,6 +8,10 @@ function setup() {
 
 function teardown() {
     run uninstall_eza
+
+    # reset PATH
+    PATH=$(getconf PATH)
+    export PATH
 }
 
 @test "[ubuntu-common] eza" {
