@@ -38,16 +38,22 @@ function teardown() {
 @test "[ubuntu-common] misc" {
     DOTFILES_DEBUG=1 bash "${SCRIPT_PATH}"
 
-    
-    [ -x "$(command -v curl)" ]
-    [ -x "$(command -v gpg)" ]
-    [ -x "$(command -v jq)" ]
-    [ -x "$(command -v fdfind)" ]
-    [ -x "$(command -v btop)" ]
-    [ -x "$(command -v shellcheck)" ]
-    [ -x "$(command -v vim)" ]
-    [ -x "$(command -v unzip)" ]
-    [ -x "$(command -v locale-gen)" ]
-    [ -x "$(command -v wget)" ]
-    [ -x "$(command -v zsh)" ]
-}
+    for ((i = 0; i < ${#expected_packages[*]}; ++i)); do        
+        local package = "${expected_packages[$i]}"
+        [ "${expected_packages[$i]}" == "locales"] && package = "locale-gen"
+        echo "Check package $package ..."
+        [ -x "$(command -v $package)" ]
+    done
+
+    #[ -x "$(command -v curl)" ]
+    #[ -x "$(command -v gpg)" ]    
+    #[ -x "$(command -v fdfind)" ]
+    #[ -x "$(command -v jq)" ]    
+    #[ -x "$(command -v btop)" ]
+    #[ -x "$(command -v shellcheck)" ]
+    #[ -x "$(command -v locale-gen)" ]
+    #[ -x "$(command -v unzip)" ]    
+    #[ -x "$(command -v vim)" ]    
+    #[ -x "$(command -v wget)" ]
+    #[ -x "$(command -v zsh)" ]
+}#
