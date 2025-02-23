@@ -20,7 +20,6 @@ function install_eza() {
     echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
     sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
     sudo apt-get update
-    sudo apt-get upgrade
 
     if ! apt_install_eza; then
         apt_install_exa

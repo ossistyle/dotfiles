@@ -7,8 +7,7 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
 fi
 
 function install_dependencies() {
-    sudo apt-get update 
-    sudo apt-get upgrade
+    sudo apt-get update
     sudo apt-get install -y unzip
 }
 

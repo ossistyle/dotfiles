@@ -12,5 +12,8 @@ function teardown() {
 
 @test "[ubuntu-common] nvm" {
     DOTFILES_DEBUG=1 bash "${SCRIPT_PATH}"
-    [ -x "$(command -v nvm)" ]
+
+    . "$NVM_DIR/nvm.sh"
+    nvm -v    
+    [ "$(command -v nvm)" ]
 }

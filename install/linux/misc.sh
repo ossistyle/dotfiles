@@ -31,7 +31,6 @@ readonly CLASSIC_SNAPS=(
 
 function update_apt_package() {
     sudo apt-get update
-    sudo apt-get upgrade
 }
 
 function install_apt_packages() {    
