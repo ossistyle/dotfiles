@@ -43,6 +43,7 @@ function set_local() {
 
 function uninstall_apt_packages() {
     sudo apt-get remove -y "${PACKAGES[@]}"
+    sudo apt-get auto-remove -y
 }
 
 function install_apt_snaps() {

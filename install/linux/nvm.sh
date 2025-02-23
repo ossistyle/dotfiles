@@ -6,30 +6,31 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
+readonly _NVM_DIR="$HOME/.nvm"
+
 function install_dependencies() {
-    sudo apt-get update
-    sudo apt-get install -y curl unzip tar xz-utils
+    sudo snap remove curl
+    sudo apt-get update    
+    sudo apt-get install -y curl unzip tar xz-utils build-essential libssl-dev curl git-core
 }
 
 function install_nvm() {
-    export NVM_DIR="$HOME/.nvm"
-
-    if [ ! -d "$NVM_DIR" ]; then
-        git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-	    cd "$NVM_DIR"
-	    git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)` 
+    if [ ! -d "$_NVM_DIR" ]; then
+        mkdir "$_NVM_DIR"
+        export NVM_DIR=$_NVM_DIR
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash        
     fi
     . "$NVM_DIR/nvm.sh"
+    echo "==> NVM version"
+    command -v nvm && nvm -v 
+    echo "==> Installing NodeJS"
     nvm install --lts
 }   
 
-function install_node_lts() {
-    eval $(/bin/bash --login -c "nvm install node")
-}
-
 function uninstall_nvm() {
     rm -rf $NVM_DIR
-    sudo apt-get autoremove -y
+    sudo apt-get remove -y curl unzip xz-utils build-essential libssl-dev curl git-core
+    sudo apt-get autoremove -y    
 }
 
 function main() {

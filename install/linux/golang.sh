@@ -34,6 +34,7 @@ function install_golang() {
 function uninstall_golang() {
     sudo rm -rfv /usr/local/go
     sudo apt-get remove -y curl
+    sudo apt-get auto-remove -y
 }
 
 function main() {

@@ -28,6 +28,7 @@ function install_kcov_dependencies() {
 
 function uninstall_kcov_dependencies() {
     sudo apt-get remove -y "${PACKAGES[@]}"
+    sudo apt-get auto-remove -y
 }
 
 function install_kcov() {

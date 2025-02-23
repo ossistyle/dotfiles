@@ -18,6 +18,7 @@ function install_gh() {
 
 function uninstall_gh() {
     sudo apt-get remove -y gh
+    sudo apt-get auto-remove -y
 }
 
 function main() {

@@ -34,7 +34,7 @@ jobs:
             bash ./install/linux/kcov.sh
 
           else
-            echo "${OS} and ${SYSTEM} are not supported" >&2
+            echo "${OS} and ${TYPE} are not supported" >&2
             exit 1
           fi
 

@@ -28,6 +28,7 @@ function install_eza() {
 
 function uninstall_eza() {
     sudo apt-get remove -y eza
+    sudo apt-get auto-remove -y
 }
 
 function main() {

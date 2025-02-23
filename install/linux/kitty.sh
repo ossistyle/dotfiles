@@ -28,6 +28,7 @@ function uninstall_kitty() {
     rm -rf "${HOME}/.local/bin/kitty"
     rm -rf "${HOME}/.local/bin/kitten"
     sudo apt-get remove -y curl
+    sudo apt-get auto-remove -y
 }
 
 function main() {

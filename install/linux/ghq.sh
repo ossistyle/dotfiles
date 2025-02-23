@@ -39,6 +39,8 @@ function install_ghq() {
 
 function uninstall_ghq() {
     rm -f "${HOME%/}/.local/bin/ghq"
+    sudo apt-get remove -y unzip
+    sudo apt-get auto-remove -y
 }
 
 function main() {

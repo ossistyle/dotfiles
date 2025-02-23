@@ -68,6 +68,7 @@ install_lazydocker() {
 
 function uninstall_docker_engine() {
     sudo apt-get remove -y "${PACKAGES[@]}"
+    sudo apt-get auto-remove -y
 }
 
 function main() {
