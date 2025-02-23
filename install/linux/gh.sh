@@ -7,7 +7,7 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
 fi
 
 function install_gh() {
-    type -p curl >/dev/null || sudo apt-install curl -y
+    sudo get-apt install -y curl
 
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
         sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
@@ -17,7 +17,7 @@ function install_gh() {
 }
 
 function uninstall_gh() {
-    sudo apt-get remove -y gh
+    sudo apt-get remove -y gh curl
     sudo apt-get auto-remove -y
 }
 
