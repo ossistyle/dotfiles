@@ -21,7 +21,6 @@ function merge_coverage_results() {
 }
 
 function uninstall_dependencies() {
-    command -v kcov && uninstall_kcov
     command -v bats && sudo apt-get remove -y bats parallel
 }
 
