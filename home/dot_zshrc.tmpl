@@ -84,7 +84,9 @@ export EDITOR=$HOME/.local/bin/nvim
 export EDITOR=nvim
 {{ end -}}
 
+{{- if .opPrompt }}
 export GITHUB_ACCESS_TOKEN={{ onepasswordRead "op://Development/GitHub Personal Access Token/token" | trim }}
+{{- end }}
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 

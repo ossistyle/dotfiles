@@ -6,6 +6,8 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
+readonly BIN_DIR="$HOME"/.local/bin/
+
 function install_dependencies() {
     sudo apt-get install -y curl xz-utils 
 }
@@ -18,8 +20,9 @@ function install_kitty() {
 }
 
 function symlink_kitty_binary() {
-  ln -snf "$HOME"/.local/kitty.app/bin/kitty "$HOME"/.local/bin/
-  ln -snf "$HOME"/.local/kitty.app/bin/kitten "$HOME"/.local/bin/
+    [ -d "$BIN_DIR" ] || mkdir -p "$BIN_DIR"
+    ln -snf "$HOME"/.local/kitty.app/bin/kitty "$BIN_DIR"
+    ln -snf "$HOME"/.local/kitty.app/bin/kitten "$BIN_DIR"
 
 }
 

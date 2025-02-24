@@ -9,7 +9,6 @@ fi
 readonly _NVM_DIR="$HOME/.nvm"
 
 function install_dependencies() {
-    sudo snap remove curl
     sudo apt-get update 
     sudo apt-get install -y curl unzip tar xz-utils build-essential libssl-dev curl git-core
 }
@@ -27,6 +26,7 @@ function install_nvm() {
 function uninstall_nvm() {
     rm -rf $NVM_DIR
     sudo apt-get remove -y curl unzip xz-utils build-essential libssl-dev curl git-core
+    sudo aüt-get autoremove -y
   
 }
 

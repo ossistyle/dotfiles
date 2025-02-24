@@ -4,7 +4,7 @@ Ossistyle's dotfiles, managed with [`chezmoi`](https://github.com/twpayne/chezmo
 
 Install them with:
 
-    chezmoi init ossistyle/dotfiles-chezmoi
+    chezmoi init ossistyle
 
 Personal secrets are stored in [1Password](https://1password.com) and you'll
 need the [1Password CLI](https://developer.1password.com/docs/cli/) installed.
