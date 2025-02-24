@@ -7,23 +7,6 @@
     stripComponents = 1
     path = "golangci-lint"
 
-[".local/bin/nvim"]
-    type = "file"
-    url = "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage"
-    refreshPeriod = "672h"
-    executable = true
-
-{{/*
-[".local/bin/autocvd"]
-  type: "file"
-  url: "https://github.com/shunk031/autocvd-go/releases/latest/download/autocvd_linux_x86_64.tar.gz"
-  executable: true
-  refreshPeriod: "168h"
-  filter:
-    command: "tar"
-    args: ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "autocvd"]
-*/}}
-
 {{- end }}
 
 [".oh-my-zsh"]
