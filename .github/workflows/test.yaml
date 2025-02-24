@@ -20,10 +20,7 @@ jobs:
     env:
       OS: ${{ matrix.os }}
       TYPE: ${{ matrix.type }}
-    steps:
-      - name: OpenCommit — improve commits with AI 🧙
-        uses: di-sukharev/opencommit@github-action-v1.0.2
-            
+    steps:           
       - name: Checkout repository
         uses: actions/checkout@v4      
 
