@@ -18,14 +18,11 @@
 {{-   $email = "thomas.hoffmann2@ibm.com" -}}
 {{- end -}}
 
-{{- $opMode := "account" -}}
-{{- if eq (env "OP_SERVICE_ACCOUNT_TOKEN") "true" -}}
-{{-     $opMode := "service" -}}
+{{- $opMode := "account" }}
+{{- if (env "OP_SERVICE_ACCOUNT_TOKEN") -}}
+    {{- $opMode := "service" }}
 {{- end -}}
-{{- $opPrompt := true -}}
-{{- if (env "DOTFILES_TEST_CONTAINER") }}
-{{-     $opPrompt := false }}
-{{- end }}
+{{- $opPrompt := eq (env "DOTFILES_TEST_CONTAINER" | default "true") "true" -}}
 
 [data]
     ephemeral = {{ $ephemeral }}
@@ -36,8 +33,6 @@
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
     osid = {{ $osID | quote }}
-    opMode = {{ $opMode | quote }}
-    opPrompt = {{ $opPrompt }}
     zshPlugins = [
         "per-directory-history",
         "zsh-syntax-highlighting",
@@ -49,4 +44,4 @@
 
 [onepassword]
     mode = {{ $opMode | quote }}
-    prompt =  {{ eq (env "DOTFILES_TEST_CONTAINER" | default "foo") "true" }}
+    prompt =  {{ $opPrompt }}
