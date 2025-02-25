@@ -1,4 +1,4 @@
-{{ if and .personal (not .opPrompt) -}}
+{{ if and .personal .opPrompt -}}
 OCO_API_KEY={{ onepasswordRead "op://Development/OpenAI API Token/token" | trim }}
 {{ else }}
 OCO_API_KEY=
