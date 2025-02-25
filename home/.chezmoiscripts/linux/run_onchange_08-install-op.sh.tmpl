@@ -1,4 +1,4 @@
-{{ if and (eq .osid "linux-ubuntu") .personal -}}
+{{ if and (eq .osid "linux-ubuntu") .personal .opPrompt -}}
 
     {{ include "../install/linux/op.sh" }}
 
