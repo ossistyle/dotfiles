@@ -1,5 +1,7 @@
+{{ if .opPrompt -}}
 {{ if .work -}}
 {{   onepasswordRead "op://Development/SSH Key Work/Private-Key" }}
 {{ else if .personal -}}
 {{   onepasswordRead "op://Development/SSH Key Personal/Private-Key" }}
+{{ end -}}
 {{ end -}}
