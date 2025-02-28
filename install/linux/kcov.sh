@@ -23,6 +23,7 @@ readonly PACKAGES=(
 )
 
 function install_kcov_dependencies() {
+    sudo apt-get update
     sudo apt-get install -y "${PACKAGES[@]}"
 }
 
