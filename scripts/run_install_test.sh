@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -Eeuo pipefail
+set -eufo pipefail
+
+if [ "${DOTFILES_DEBUG:-}" ]; then
+    set -x
+fi
 
 function install_dependencies() {
     command -v kcov || bash ./install/linux/kcov.sh
