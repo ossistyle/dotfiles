@@ -3,6 +3,9 @@
 # bats test_tags=ubuntu:personal
 @test "[ubuntu-personal] dotfiles" {
     files_exists=(
+        "${HOME}/.profile"
+        "${HOME}/.hushlogin"
+        "${HOME}/.bashrc"
         "${HOME}/.zshrc"
         "${HOME}/.zshenv"
         "${HOME}/.zlogin"
@@ -19,13 +22,19 @@
         "${HOME}/.config/nvim/init.lua"
         "${HOME}/.config/tmux/tmux.conf"
     )
+
     for file in "${files_exists[@]}"; do
         echo "Checking ${file}"
         [ -f "${file}" ]
     done
 
     directories_exists=(
-        
+        "${HOME}/.local/bin/common"
+        "${HOME}/.oh-my-zsh/completions"
+        "${HOME}/.oh-my-zsh/custom"
+        "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+        "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+        "${HOME}/.oh-my-zsh/custom/themes/powerlevel10k"
     )
     for directory in "${directories_exists[@]}"; do
         echo "Checking ${directory}"

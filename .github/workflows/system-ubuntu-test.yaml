@@ -58,7 +58,7 @@ jobs:
           TYPE: ${{ matrix.type }}
         run: |
           cd $(chezmoi source-path)/../
-          bats tests/files/common.bats
+          # bats tests/files/common.bats
           bats --filter-tags common,ubuntu:${TYPE} \
             --print-output-on-failure \
             tests/files/ubuntu.bats
