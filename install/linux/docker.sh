@@ -64,6 +64,8 @@ install_lazydocker() {
   curl -fsSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh -o "$HOME/install_update_linux.sh" 
 
   bash "$HOME/install_update_linux.sh"
+
+  rm -rf "$HOME/install_update_linux.sh"
 }
 
 function uninstall_docker_engine() {
