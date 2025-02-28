@@ -14,7 +14,7 @@ Get-AppxPackage -AllUsers Clipchamp.Clipchamp | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.549981C3F5F10 | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.BingNews | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.BingWeather | Remove-AppxPackage
-Get-AppxPackage -AllUsers Microsoft.GamingApp | Remove-AppxPackage
+# Get-AppxPackage -AllUsers Microsoft.GamingApp | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.GetHelp | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.Getstarted | Remove-AppPackage
 Get-AppxPackage -AllUsers Microsoft.Microsoft3DViewer | Remove-AppxPackage
@@ -37,10 +37,10 @@ Get-AppxPackage -AllUsers Microsoft.WindowsCommunicationsApps | Remove-AppxPacka
 Get-AppxPackage -AllUsers Microsoft.WindowsFeedbackHub | Remove-AppPackage
 Get-AppxPackage -AllUsers Microsoft.WindowsMaps | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.WindowsSoundRecorder | Remove-AppxPackage
-Get-AppxPackage -AllUsers Microsoft.WindowsStore | Remove-AppxPackage
-Get-AppxPackage -AllUsers Microsoft.Xbox.TCUI | Remove-AppxPackage
-Get-AppxPackage -AllUsers Microsoft.XboxApp | Remove-AppxPackage
-Get-AppxPackage -AllUsers Microsoft.XboxGameOverlay | Remove-AppxPackage
+# Get-AppxPackage -AllUsers Microsoft.WindowsStore | Remove-AppxPackage
+# Get-AppxPackage -AllUsers Microsoft.Xbox.TCUI | Remove-AppxPackage
+# Get-AppxPackage -AllUsers Microsoft.XboxApp | Remove-AppxPackage
+# Get-AppxPackage -AllUsers Microsoft.XboxGameOverlay | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.XboxGamingOverlay | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.XboxIdentityProvider | Remove-AppxPackage
 Get-AppxPackage -AllUsers Microsoft.XboxSpeechToTextOverlay | Remove-AppxPackage
