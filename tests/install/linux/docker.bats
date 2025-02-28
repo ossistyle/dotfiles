@@ -22,3 +22,8 @@ function teardown() {
     run dpkg -s 'docker-compose-plugin'
     [ "${status}" -eq 0 ]
 }
+
+@test "[ubuntu-client] lazydocker" {
+    DOTFILES_DEBUG=1 bash "${SCRIPT_PATH}"
+    [ -x "$(command -v lazydocker)" ]
+}

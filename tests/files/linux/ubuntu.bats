@@ -2,6 +2,21 @@
 
 # bats test_tags=ubuntu:personal
 @test "[ubuntu-personal] dotfiles" {
+    directories_exists=(
+        "${HOME}/.ssh"
+        "${HOME}/.local/bin/common"
+        "${HOME}/.oh-my-zsh/completions"
+        "${HOME}/.oh-my-zsh/custom"
+        "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+        "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+        "${HOME}/.oh-my-zsh/custom/themes/powerlevel10k"
+    )
+    for directory in "${directories_exists[@]}"; do
+        echo "Checking ${directory}"
+        [ -d "${directory}" ]
+    done
+
+
     files_exists=(
         "${HOME}/.profile"
         "${HOME}/.hushlogin"
@@ -21,6 +36,10 @@
         "${HOME}/.config/lazydocker/config.yml"
         "${HOME}/.config/nvim/init.lua"
         "${HOME}/.config/tmux/tmux.conf"
+        "${HOME}/.ssh/authorized_keys"
+        "${HOME}/.ssh/config"
+        "${HOME}/.ssh/id_rsa.pub"
+        "${HOME}/.ssh/id_rsa"
     )
 
     for file in "${files_exists[@]}"; do
@@ -28,18 +47,7 @@
         [ -f "${file}" ]
     done
 
-    directories_exists=(
-        "${HOME}/.local/bin/common"
-        "${HOME}/.oh-my-zsh/completions"
-        "${HOME}/.oh-my-zsh/custom"
-        "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-        "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-        "${HOME}/.oh-my-zsh/custom/themes/powerlevel10k"
-    )
-    for directory in "${directories_exists[@]}"; do
-        echo "Checking ${directory}"
-        [ -d "${directory}" ]
-    done
+    
 
     files_not_exists=(
         

@@ -21,7 +21,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Setup dotfiles
+      - name: Install dotfiles
         env:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           TYPE: ${{ matrix.type }}
