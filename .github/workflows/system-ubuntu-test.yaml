@@ -61,4 +61,4 @@ jobs:
           # bats tests/files/common.bats
           bats --filter-tags common,ubuntu:${TYPE} \
             --print-output-on-failure \
-            tests/files/ubuntu.bats
+            tests/files/linux/ubuntu.bats
