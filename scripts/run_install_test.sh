@@ -13,10 +13,9 @@ function install_dependencies() {
 
 function run_os_specific_test() {    
     kcov --clean \
-        --debug-force-bash-stderr \
-        --include-path=install/linux/ \
+        --include-path=./install/linux/ \
         "./coverage_linux" \
-        bats -r "tests/install/linux/"    
+        bats -r "./tests/install/linux/"
 }
 
 function merge_coverage_results() {    

@@ -14,7 +14,6 @@ readonly PACKAGES=(
     fd-find
     jq
     shellcheck
-    locales
     unzip
     vim
     wget
@@ -30,6 +29,7 @@ function install_apt_packages() {
 }
 
 function set_local() {
+    sudo apt-get install -y locales
     sudo locale-gen $LOCALE
 }
 

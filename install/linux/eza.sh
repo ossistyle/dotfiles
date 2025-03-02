@@ -6,12 +6,12 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
     set -x
 fi
 
-function apt_install_eza() {
-    sudo apt-get install -y eza
+function install_dependencies() {
+    sudo apt-get install -y wget
 }
 
-function apt_install_exa() {
-    sudo apt-get install -y exa
+function apt_install_eza() {
+    sudo apt-get install -y eza
 }
 
 function install_eza() {
@@ -21,17 +21,17 @@ function install_eza() {
     sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
     sudo apt-get update
 
-    if ! apt_install_eza; then
-        apt_install_exa
-    fi
+    apt_install_eza
 }
 
 function uninstall_eza() {
-    sudo apt-get remove -y eza
+    sudo apt-get remove -y eza wget
     sudo apt-get auto-remove -y
 }
 
+
 function main() {
+    install_dependencies
     install_eza
 }
 

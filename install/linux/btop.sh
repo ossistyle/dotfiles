@@ -13,6 +13,7 @@ function install_dependencies() {
 }
 
 function install_btop() {
+    rm -rf "$DEST_DIR"
     git clone https://github.com/aristocratos/btop.git "$DEST_DIR"
     cd "$DEST_DIR"
     make
@@ -22,6 +23,7 @@ function install_btop() {
 function uninstall_btop() {
     cd "$DEST_DIR"
     sudo make uninstall
+    rm -rf "$DEST_DIR"
 }
 
 function main() {

@@ -26,7 +26,7 @@ function install_nvm() {
 function uninstall_nvm() {
     rm -rf $NVM_DIR
     sudo apt-get remove -y curl unzip xz-utils build-essential libssl-dev curl git-core
-    sudo aüt-get autoremove -y
+    sudo apt-get autoremove -y
   
 }
 
