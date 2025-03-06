@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 function remove_jenkins_blueocean() {
-    drc jenkins-docker
-    drc jenkins-blueocean
-    drc jenkins-ssh-agent
-    drn jenkins
+    docker rm -f --volumes jenkins-docker
+    docker rm -f --volumes jenkins-blueocean
+    docker rm -f --volumes jenkins-ssh-agent
+    docker network rm jenkins -f
 }
 
 # https://www.jenkins.io/doc/book/installing/docker/
@@ -25,7 +25,7 @@ function jenkins-in-docker() {
         --volume local_work_dir:/mnt \
         docker:dind --storage-driver overlay2
 
-    docker run --name jenkins-blueocean --restart=on-failure --detach \
+    docker run --name jenkins-blueocean -it --restart=on-failure --detach \
         --network jenkins --env DOCKER_HOST=tcp://docker:2375 \
         --publish 8181:8080 --publish 50000:50000 \
         --volume jenkins-data:/var/jenkins_home \

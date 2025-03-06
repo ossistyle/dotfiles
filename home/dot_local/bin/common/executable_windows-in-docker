@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+function remove_windows_in_docker() {
+    docker rm -f windows
+}
+
+function windows-in-docker() {
+    # https://github.com/dockur/windows
+
+    docker run \
+        -it \
+        --rm \
+        --name windows \
+        -p 8006:8006 \
+        --device=/dev/kvm \
+        --device=/dev/net/tun \
+        --cap-add NET_ADMIN \
+        --stop-timeout 120 \
+         --volume "$HOME/windows:/c/Users/Docker/Documents" \
+        dockurr/windows
+}
+
+if [ -n "$($SHELL -c "echo ${ZSH_VERSION}")" ]; then
+    windows-in-docker
+fi
