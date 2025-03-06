@@ -16,7 +16,7 @@ function windows-in-docker() {
         --device=/dev/net/tun \
         --cap-add NET_ADMIN \
         --stop-timeout 120 \
-         --volume "$HOME/windows:/c/Users/Docker/Documents" \
+         --volume "$HOME/windows:/host-storage" \
         dockurr/windows
 }
 
