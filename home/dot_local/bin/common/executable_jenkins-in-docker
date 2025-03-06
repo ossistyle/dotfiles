@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+function remove_jenkins_blueocean() {
+    drc jenkins-docker
+    drc jenkins-blueocean
+    drc jenkins-ssh-agent
+    drn jenkins
+}
+
+# https://www.jenkins.io/doc/book/installing/docker/
+function jenkins-in-docker() {
+    # docker run --restart=always -d -p 5000:5000 --name registry registry:2.7
+
+    docker build --file "${HOME}/.docker/Dockerfile.jenkins" --tag jenkins-blueocean:latest .
+
+    docker network create jenkins
+
+    docker volume create local_work_dir --opt type=none --opt device="$HOME/work" --opt o=bind
+
+    docker run --name jenkins-docker --restart=on-failure --detach \
+        --privileged --network jenkins --network-alias docker \
+        --env DOCKER_TLS_CERTDIR="" \
+        --publish 2375:2375 \
+        --volume jenkins-data:/var/jenkins_home \
+        --volume local_work_dir:/mnt \
+        docker:dind --storage-driver overlay2
+
+    docker run --name jenkins-blueocean --restart=on-failure --detach \
+        --network jenkins --env DOCKER_HOST=tcp://docker:2375 \
+        --publish 8181:8080 --publish 50000:50000 \
+        --volume jenkins-data:/var/jenkins_home \
+        --volume local_work_dir:/mnt \
+        jenkins-blueocean:latest
+
+    docker run -d --rm --name=jenkins-ssh-agent -p 2200:22 \
+        -e "JENKINS_AGENT_SSH_PUBKEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2q/Fgci+Thd1AESsitimH9C/v9fZyGEZS1XKM19dcu demo" \
+        jenkins/ssh-agent
+}
+
+if [ -n "$($SHELL -c "echo ${ZSH_VERSION}")" ]; then
+    jenkins-in-docker
+fi
