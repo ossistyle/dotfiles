@@ -7,8 +7,8 @@ if [ "${DOTFILES_DEBUG:-}" ]; then
 fi
 
 readonly GLOBAL_MODULES=(
-    opencommit
-    gitmoji-cli
+    opencommit@latest
+    gitmoji-cli@latest
 )
 
 function install_dependencies() {
