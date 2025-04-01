@@ -1,5 +1,8 @@
-[includeIf "hasconfig:remote.*.url:https://*.jtl-software.com/**"]
-  path = .gitconfig_jtl
-  
-[includeIf "hasconfig:remote.*.url:https://github.com/**"]
-  path = .gitconfig_private
+[user]
+	name = Thomas Hoffmann
+	email = ossistyle@gmail.com
+[credential]
+	helper = store
+
+[includeIf "gitdir:~/work/jtl/**"]
+	path = config_jtl
